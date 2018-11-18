@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Search Results</title>
+</head>
+<body>
+    <a href="{{ url_for('homepage') }}">Home</a>
+    <a href="{{ url_for('profile') }}">Profile</a>
+    <div class="container">
+        <ul class="list-group">
+
+            {% set css_class = 'list-group-item-info' %}
+
+            {% for content in contents %}
+
+                {% if content['label']  == 'neg' %}
+                    {% set css_class = 'list-group-item-danger' %}
+                {% elif content['label']  == 'pos' %}
+                    {% set css_class = 'list-group-item-success' %}
+                {% endif %}
+
+                <li class="list-group-item {{ css_class }}">{{ content['tweet'] }}<li>
+
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
